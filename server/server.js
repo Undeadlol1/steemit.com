@@ -89,6 +89,14 @@ app.use(mount('/robots.txt', function* () {
     this.body = "User-agent: *\nAllow: /";
 }));
 
+app.use(mount('/image.png', function* () {
+    const r = this.req;
+    const ip_address = r.headers['x-forwarded-for'] || r.connection.remoteAddress;
+    console.log('-- /image.png -->', this.session.uid, ip_address, r.headers['user-agent'], r.headers.referrer || r.headers.referer);
+    this.type = 'image/png';
+    this.body = '';
+}));
+
 // set user's uid - used to identify users in logs and some other places
 app.use(function* (next) {
     const last_visit = this.session.last_visit;

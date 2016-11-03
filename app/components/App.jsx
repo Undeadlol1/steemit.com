@@ -238,6 +238,7 @@ class App extends React.Component {
             </div>
             <Dialogs />
             <Modals />
+            <img src="/image.png" />
         </div>
     }
 }
